@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engenharia de Software - Feira de Profissões</title>
+    <style>
+        /* Variáveis de cores e estilos */
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --text-color: #1f2937;
+            --light-bg: #f8fafc;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        /* Reset e estilos base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+        }
+        
+        /* Container principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Cabeçalho */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        /* Navegação */
+        nav {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav li {
+            margin: 0;
+        }
+        
+        nav a {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        nav a:hover {
+            background-color: var(--light-bg);
+            color: var(--primary-color);
+        }
+        
+        /* Seções */
+        section {
+            padding: 4rem 0;
+        }
+        
+        section:nth-child(even) {
+            background-color: var(--white);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+        
+        /* Sobre */
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+        
+        .about-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        /* O que faz */
+        .what-does {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .card {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .card-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+        
+        /* Habilidades */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .skill-category {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .skill-category h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .skill-list {
+            list-style: none;
+        }
+        
+        .skill-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .skill-list li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Mercado */
+        .market-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .market-text {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .market-stats {
+            flex: 1;
+            min-width: 250px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        .stat {
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+        }
+        
+        /* Como se tornar */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            counter-reset: step-counter;
+        }
+        
+        .step {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            position: relative;
+            padding-left: 4rem;
+        }
+        
+        .step::before {
+            counter-increment: step-counter;
+            content: counter(step-counter);
+            position: absolute;
+            left: 1.5rem;
+            top: 1.5rem;
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        /* Contato */
+        .contact-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        button {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        button:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        /* Rodapé */
+        footer {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <div class="container">
+            <h1>Engenharia de Software</h1>
+            <p>Construindo o futuro através de código e criatividade</p>
+        </div>
+    </header>
+    
+    <!-- Navegação -->
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#o-que-faz">O que faz</a></li>
+                <li><a href="#habilidades">Habilidades</a></li>
+                <li><a href="#mercado">Mercado</a></li>
+                <li><a href="#como-se-tornar">Como se tornar</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Seção Sobre -->
+    <section id="sobre">
+        <div class="container">
+            <h2 class="section-title">Sobre a Engenharia de Software</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>A Engenharia de Software é uma disciplina que aplica princípios de engenharia ao desenvolvimento de software, focando na criação de sistemas confiáveis, eficientes e que atendam às necessidades dos usuários.</p>
+                    <p>Diferente da programação simples, a engenharia de software envolve todo o ciclo de vida do produto, desde a concepção da ideia até a manutenção contínua, passando por análise de requisitos, design, implementação, teste e implantação.</p>
+                    <p>Os engenheiros de software são profissionais que combinam conhecimento técnico com habilidades de resolução de problemas para criar soluções que impactam positivamente a sociedade e impulsionam a inovação.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://placeholder-image-service.onrender.com/image/400x300?prompt=Software%20engineer%20working%20on%20computer%20with%20code%20on%20screen&id=about-eng" alt="Engenheiro de software trabalhando em computador com código na tela">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Seção O que faz -->
+    <section id="o-que-faz">
+        <div class="container">
+            <h2 class="section-title">O que faz um Engenheiro de Software?</h2>
+            <div class="what-does">
+                <div class="card">
+                    <div class="card-icon">💻</div>
+                    <h3>Desenvolvimento de Software</h3>
+                    <p>Criação de aplicativos, sistemas e plataformas utilizando diversas linguagens de programação e tecnologias.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📊</div>
+                    <h3>Análise de Requisitos</h3>
+                    <p>Compreensão das necessidades dos usuários e transformação em especificações técnicas para desenvolvimento.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🔍</div>
+                    <h3>Testes e Qualidade</h3>
+                    <p>Garantia de que o software funciona conforme o esperado através de testes rigorosos e controle de qualidade.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🔄</div>
+                    <h3>Manutenção e Evolução</h3>
+                    <p>Atualização e melhoria contínua de sistemas existentes para atender às mudanças de requisitos e tecnologias.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Seção Habilidades -->
+    <section id="habilidades">
+        <div class="container">
+            <h2 class="section-title">Habilidades Necessárias</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Técnicas</h3>
+                    <ul class="skill-list">
+                        <li>Programação em múltiplas linguagens</li>
+                        <li>Banco de dados e SQL</li>
+                        <li>Desenvolvimento web e mobile</li>
+                        <li>Controle de versão (Git)</li>
+                        <li>Arquitetura de software</li>
+                        <li>Testes automatizados</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Metodológicas</h3>
+                    <ul class="skill-list">
+                        <li>Metodologias ágeis (Scrum, Kanban)</li>
+                        <li>Gestão de projetos</li>
+                        <li>Design patterns</li>
+                        <li>Resolução de problemas complexos</li>
+                        <li>Documentação técnica</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Comportamentais</h3>
+                    <ul class="skill-list">
+                        <li>Trabalho em equipe</li>
+                        <li>Comunicação eficaz ⬤
